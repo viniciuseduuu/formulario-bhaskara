@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Bhaskara</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+    <script>
+        function calcularBhaskara() {
+            
+            var a = parseFloat(document.getElementById("valorA").value);
+            var b = parseFloat(document.getElementById("valorB").value);
+            var c = parseFloat(document.getElementById("valorC").value);
+
+            
+            var delta = b * b - 4 * a * c;
+
+            
+            var x1, x2;
+
+            
+            if (delta > 0) {
+                x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            } else if (delta === 0) {
+                x1 = x2 = -b / (2 * a);
+            } else {
+                
+                var parteReal = -b / (2 * a);
+                var parteImaginaria = Math.sqrt(-delta) / (2 * a);
+                x1 = parteReal + " + " + parteImaginaria + "i";
+                x2 = parteReal + " - " + parteImaginaria + "i";
+            }
+
+            
+            var resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = "X' = " + x1 + "<br>X'' = " + x2;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Bhaskara</h1>
+        <label for="valorA">Valor de A:</label>
+        <input type="number" id="valorA" required>
+
+        <label for="valorB">Valor de B:</label>
+        <input type="number" id="valorB" required>
+
+        <label for="valorC">Valor de C:</label>
+        <input type="number" id="valorC" required>
+
+        <button onclick="calcularBhaskara()">Calcular</button>
+
+        <div id="resultado"></div>
+    </div>
+</body>
+</html>
